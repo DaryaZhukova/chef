@@ -1,0 +1,43 @@
+Starting Chef Client, version 14.4.56[0m
+resolving cookbooks for run list: ["task1_jboss"][0m
+Synchronizing Cookbooks:[0m
+  - task1_jboss (0.1.0)[0m
+Installing Cookbook Gems:[0m
+Compiling Cookbooks...[0m
+Converging 8 resources[0m
+Recipe: task1_jboss::default[0m
+  * yum_package[unzip] action install (up to date)
+  * cookbook_file[/opt/jdk-6u45-linux-amd64.rpm] action create
+    [32m- create new file /opt/jdk-6u45-linux-amd64.rpm[0m
+    [32m- update content in file /opt/jdk-6u45-linux-amd64.rpm from none to e3dd9a[0m
+    [37m(file sizes exceed 10000000 bytes, diff output suppressed)[0m
+[0m  * rpm_package[/opt/jdk-6u45-linux-amd64.rpm] action install
+    [32m- install version 1.6.0_45-fcs of package /opt/jdk-6u45-linux-amd64.rpm[0m
+[0m  * cookbook_file[/tmp/jboss-eap-5.1.2.zip] action create (up to date)
+  * execute[unzip] action run
+    [32m- execute unzip /tmp/jboss-eap-5.1.2.zip -d /opt/[0m
+[0m  * cookbook_file[/etc/systemd/system/jboss.service] action create
+    [32m- create new file /etc/systemd/system/jboss.service[0m
+    [32m- update content in file /etc/systemd/system/jboss.service from none to 0945e2[0m
+    [37m--- /etc/systemd/system/jboss.service	2018-09-09 19:20:34.016724183 +0100[0m
+    [37m+++ /etc/systemd/system/.chef-jboss20180909-15490-19t6cna.service	2018-09-09 19:20:33.994723768 +0100[0m
+    [37m@@ -1 +1,9 @@[0m
+    [37m+[Unit][0m
+    [37m+After=network.target[0m
+    [37m+[0m
+    [37m+[Service][0m
+    [37m+Type=forking[0m
+    [37m+[0m
+    [37m+ExecStart=/opt/jboss-eap-5.1/jboss-as/bin/run.sh -b 192.168.15.2 &[0m
+    [37m+[0m
+[0m  * service[jboss] action enable (up to date)
+  * service[jboss] action start
+    [32m- start service service[jboss][0m
+[0m  * cookbook_file[/opt/jboss-eap-5.1/jboss-as/server/default/deploy/sample.war] action create
+    [32m- create new file /opt/jboss-eap-5.1/jboss-as/server/default/deploy/sample.war[0m
+    [32m- update content in file /opt/jboss-eap-5.1/jboss-as/server/default/deploy/sample.war from none to 89b33c[0m
+    [37m(new content is binary, diff output suppressed)[0m
+[0m[0m
+Running handlers:[0m
+Running handlers complete
+[0mChef Client finished, 6/9 resources updated in 39 seconds[0m

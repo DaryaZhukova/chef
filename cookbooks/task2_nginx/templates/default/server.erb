@@ -1,4 +1,9 @@
-<%= @nodejboss %>
-<%= @jbossip %>
-<%= @jbossport %>
-<%= @jbossapp %>
+server {
+        listen *:<%= @nginxport %>;
+        server_name  jboss.com;
+location / {
+           proxy_pass http://<%= @jbossip %>:<%= @jbossport %>/<%= @jbossapp %>/;
+        }
+}
+
+

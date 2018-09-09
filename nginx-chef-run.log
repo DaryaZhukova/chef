@@ -1,0 +1,41 @@
+Starting Chef Client, version 14.4.56[0m
+resolving cookbooks for run list: ["task2_nginx"][0m
+Synchronizing Cookbooks:[0m
+  - task2_nginx (0.1.0)[0m
+Installing Cookbook Gems:[0m
+Compiling Cookbooks...[0m
+Converging 4 resources[0m
+Recipe: task2_nginx::default[0m
+  * yum_package[nginx] action install
+    [32m- install version 1:1.12.2-2.el7.x86_64 of package nginx[0m
+[0m  * service[nginx] action enable
+    [32m- enable service service[nginx][0m
+[0m  * service[nginx] action start
+    [32m- start service service[nginx][0m
+[0m  * template[/etc/nginx/conf.d/server.conf] action create
+    [32m- create new file /etc/nginx/conf.d/server.conf[0m
+    [32m- update content in file /etc/nginx/conf.d/server.conf from none to 5b8be1[0m
+    [37m--- /etc/nginx/conf.d/server.conf	2018-09-09 19:18:54.119393857 +0100[0m
+    [37m+++ /etc/nginx/conf.d/.chef-server20180909-13390-6c1g01.conf	2018-09-09 19:18:54.117393819 +0100[0m
+    [37m@@ -1 +1,10 @@[0m
+    [37m+server {[0m
+    [37m+        listen *:80;[0m
+    [37m+        server_name  jboss.com;[0m
+    [37m+location / {[0m
+    [37m+           proxy_pass http://192.168.15.2:8080/sample/;[0m
+    [37m+        }[0m
+    [37m+}[0m
+    [37m+[0m
+    [37m+[0m
+[0m  * template[/usr/share/nginx/html/secret.html] action create
+    [32m- create new file /usr/share/nginx/html/secret.html[0m
+    [32m- update content in file /usr/share/nginx/html/secret.html from none to 0d85d3[0m
+    [32m- suppressed sensitive resource[0m
+[0m  * service[nginx] action restart
+    [32m- restart service service[nginx][0m
+[0m  * service[nginx] action restart
+    [32m- restart service service[nginx][0m
+[0m[0m
+Running handlers:[0m
+Running handlers complete
+[0mChef Client finished, 7/7 resources updated in 17 seconds[0m
