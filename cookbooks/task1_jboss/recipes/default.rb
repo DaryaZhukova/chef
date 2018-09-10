@@ -26,6 +26,12 @@ cookbook_file '/etc/systemd/system/jboss.service' do
  source 'jboss.service'
  action :create
 end
+template '/etc/systemd/system/jboss.service' do
+  source 'servive.erb'
+  variables(
+    jbossip: node["network"]["interfaces"]["enp0s8"]["addresses"].detect{|k,v| v[:family] == "inet" }.first
+           )
+end
 
 service 'jboss' do
  action [ :enable, :start ]

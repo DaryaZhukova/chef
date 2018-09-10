@@ -17,11 +17,13 @@ template '/etc/nginx/conf.d/server.conf' do
     nginxport: node['nginxport'])
   notifies :restart, 'service[nginx]'
 end
+
 template '/usr/share/nginx/html/secret.html' do
   source 'secret.erb'
   variables(
-    secret: search(:nginx_conf, "id:file"))
+    secret: search(:nginx_conf, "id:secret")[0]["lab"]["secret"]
+           )
   sensitive true
-  notifies :restart, 'service[nginx]', :immediately
+  notifies :restart, 'service[nginx]'
 end
 

@@ -1,0 +1,19 @@
+{
+  "name": "nginx",
+  "description": "nginx role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[task2_nginx]"
+  ],
+  "env_run_lists": {
+
+  }
+}
+

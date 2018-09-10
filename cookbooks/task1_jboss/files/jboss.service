@@ -1,8 +1,0 @@
-[Unit]
-After=network.target
-
-[Service]
-Type=forking
-
-ExecStart=/opt/jboss-eap-5.1/jboss-as/bin/run.sh -b 192.168.15.2 &
-
