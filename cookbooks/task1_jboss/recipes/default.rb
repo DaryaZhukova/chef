@@ -18,16 +18,13 @@ cookbook_file '/tmp/jboss-eap-5.1.2.zip' do
 end
 
 execute 'unzip' do
+ not_if { ::File.exists?('/opt/jboss-eap-5.1/')}
  command 'unzip /tmp/jboss-eap-5.1.2.zip -d /opt/'
  action :run
 end
 
-cookbook_file '/etc/systemd/system/jboss.service' do
- source 'jboss.service'
- action :create
-end
 template '/etc/systemd/system/jboss.service' do
-  source 'servive.erb'
+  source 'service.erb'
   variables(
     jbossip: node["network"]["interfaces"]["enp0s8"]["addresses"].detect{|k,v| v[:family] == "inet" }.first
            )

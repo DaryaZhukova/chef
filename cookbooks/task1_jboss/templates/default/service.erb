@@ -4,5 +4,5 @@ After=network.target
 [Service]
 Type=forking
 
-ExecStart=/opt/jboss-eap-5.1/jboss-as/bin/run.sh -b <%= jbossip %> &
+ExecStart=/opt/jboss-eap-5.1/jboss-as/bin/run.sh -b <%= @jbossip %> &
 
