@@ -9,7 +9,9 @@
   "default_attributes": {
     "nginxport": "80",
     "jbossapp": "sample",
-    "jbossport": "8080"
+    "jbossport": "8080",
+    "jbossurl": "https://kent.dl.sourceforge.net/project/jboss/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip",
+    "nginxversion": "1.12.0"
   },
   "override_attributes": {
 

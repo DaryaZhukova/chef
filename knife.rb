@@ -5,6 +5,6 @@ log_level                :info
 log_location             STDOUT
 node_name                "daryazhukova"
 client_key               "#{current_dir}/daryazhukova.pem"
-chef_server_url          "https://api.chef.io/organizations/dzhukova"
+chef_server_url          "https://chefserver/organizations/dzhukova"
 cookbook_path            ["#{current_dir}/../cookbooks"]
 knife[:editor] = "/usr/bin/vim"

@@ -1,4 +1,3 @@
-
 package "unzip" do
  action :install
 end
@@ -12,15 +11,15 @@ rpm_package '/opt/jdk-6u45-linux-amd64.rpm' do
   action :install
 end
 
-cookbook_file '/tmp/jboss-eap-5.1.2.zip' do
- source 'jboss-eap-5.1.2.zip'
- action :create
+remote_file '/opt/jboss.zip' do
+ source node['jbossurl']
+ notifies :run, 'execute[unzip]', :immediately 
 end
 
 execute 'unzip' do
- not_if { ::File.exists?('/opt/jboss-eap-5.1/')}
- command 'unzip /tmp/jboss-eap-5.1.2.zip -d /opt/'
- action :run
+ not_if { ::File.exists?('/opt/jboss-5.1.0.GA/')}
+ command 'unzip /opt/jboss.zip -d /opt'
+ action :nothing
 end
 
 template '/etc/systemd/system/jboss.service' do
@@ -34,7 +33,9 @@ service 'jboss' do
  action [ :enable, :start ]
 end
 
-cookbook_file '/opt/jboss-eap-5.1/jboss-as/server/default/deploy/sample.war' do
- source 'sample.war'
- action :create
+jboss 'deploy' do
+  jbossapp node['jbossapp']
+  jbossappversion node['jbossappversion']
+  action :install
 end
+
